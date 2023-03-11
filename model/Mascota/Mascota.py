@@ -3,7 +3,7 @@ class Mascota:
         self.nombre = nombre
         self.cedula_dueño = cedula_dueño
         self.edad = edad
-        self.id = None 
+        self.id = "" 
         self.especie = especie
         self.raza = raza
         self.caracteristicas = caracteristicas
