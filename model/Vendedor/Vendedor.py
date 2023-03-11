@@ -1,3 +1,5 @@
+from model.Persona.Persona import Persona
+
 class Vendedor(Persona):
     def __init__(self, cedula, nombre, edad, usuario, contrasena):
         super().__init__(cedula, nombre, edad, "Vendedor")
