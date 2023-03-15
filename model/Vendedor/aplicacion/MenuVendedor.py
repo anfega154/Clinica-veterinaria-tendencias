@@ -1,4 +1,4 @@
-def MenuVendedor():
+def MenuVendedor(veterinaria):
     while True:
         print("\nMenú:")
         print("1. Ver Orden")
