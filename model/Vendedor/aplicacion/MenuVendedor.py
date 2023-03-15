@@ -1,4 +1,4 @@
-def MenuVendedor(usuario):
+def MenuVendedor():
     while True:
         print("\nMenú:")
         print("1. Ver Orden")
@@ -18,12 +18,9 @@ def MenuVendedor(usuario):
             # registrar factura
             print("registrar factura")
         elif opcion == "4":
-            # cerrar sesion
-            print("cerrar sesion")
+            return "cerrar sesion"
         elif opcion == "5":
-            # salir
-            print("salir")
-            return
+            return "salir"
         else:
             print("opcion no valida")
 

@@ -9,19 +9,22 @@ veterinaria = Veterinaria()
 veterinaria.personas.append(admin)
 veterinaria.personas.append(user)
 usuario = False
+salir = False
 
-while True:
-    print("aca1")
+while not salir:
     while usuario == False:
-        print("aca2")
         usuario = login(veterinaria.personas)
-        print(vars(usuario))
+        
     if usuario.rol == "administrador":
         print("codigo administrador")
     elif usuario.rol == "Veterinario":
         print("codigo Veterinario")
     elif usuario.rol == "Vendedor":
-        MenuVendedor()
+        respuesta = MenuVendedor()
+        if respuesta == "salir":
+            salir = True
+        elif respuesta == "cerrar sesion":
+            usuario = False
         print("sali")
 
 

@@ -9,9 +9,6 @@ def AfiliarEmpleado(veterinaria,nombre,cedula,edad,rol):
     veterinaria.personas.append(empleado)
     print("se ha registrado empleado con exito")
 
-
-
-
 def buscarCedula(veterinaria,cedula):
     for persona in veterinaria.personas:
         if persona.cedula==cedula:
