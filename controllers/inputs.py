@@ -1,4 +1,4 @@
-from model.Persona import PersonaBusiness
+from model.Administrador import AdministradorBusiness
 
 def addEmpleado(veterinaria,nombre,cedula,edad,rol):
     if nombre== None or nombre == " ":
@@ -28,5 +28,5 @@ def addEmpleado(veterinaria,nombre,cedula,edad,rol):
         print("el rol debe ser MEDICO o VENDEDOR")
         return
     print("validacion exitosa")
-    PersonaBusiness.AfiliarEmpleado(veterinaria,nombre,cedula,edad,rol)
+    AdministradorBusiness.AfiliarEmpleado(veterinaria,nombre,cedula,edad,rol)
 
