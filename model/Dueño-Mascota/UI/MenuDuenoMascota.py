@@ -8,16 +8,16 @@ def MenuDueñoMascotas():
         print("4. Comprar productos para tu mascota")
         print("5. Mostrar factura")
         print("6. Salir")
-        opcion = input("Ingrese una opción: ")
-        if opc == "1":
+        opcion = int(input("Ingrese una opción: "))
+        if opc == 1:
             print("Menu caquita")
-        elif opc == "2":
+        elif opc == 2:
             print("Ese chocorramito cual es")
-        elif opc == "3":
+        elif opc == 3:
             print("Mira el chocorramito que destape")
-        elif opc == "4":
+        elif opc == 4:
             print("Ese pastel de pollo cual es")
-        elif opc == "5":
+        elif opc == 5:
             print("Ya me puedo dormir?")
             break
         else:
