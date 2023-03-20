@@ -12,33 +12,33 @@ def MenuAdministrador():
         print("8. Ir a otro perfil")
         print("9. Salir")
 
-        opc = input("\nIngrese una opción: ")
+        opc = int(input("\nIngrese una opción: "))
 
-        if opc == '1':
+        if opc == 1:
             print("\nSeleccionaste medico meterinario")
 
-        elif opc == '2':
+        elif opc == 2:
             print("\nSeleccionaste vendedor")
 
-        elif opc == '3':
+        elif opc == 3:
             print("\nSeleccionaste historia medica")
 
-        elif opc == '4':
+        elif opc == 4:
             print("\nSeleccionaste registro de facturas")
 
-        elif opc == '5':
+        elif opc == 5:
             print("\nSeleccionaste consultar ordenes")
 
-        elif opc == '6':
+        elif opc == 6:
             print("\nSeleccionaste sueño de mascota")
 
-        elif opc == '7':
+        elif opc == 7:
             print("\nSeleccionaste mascota")
 
-        elif opc == '8':
+        elif opc == 8:
             print("\nSeleccionaste ir a otro perfil")
 
-        elif opc == '9':
+        elif opc == 9:
             print("\nSaliendo...")
             break
 
