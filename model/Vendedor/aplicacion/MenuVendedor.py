@@ -22,5 +22,5 @@ def MenuVendedor(veterinaria):
         elif opcion == "5":
             return "salir"
         else:
-            print("opcion no valida")
+            print("Opción invalida. Por favor seleccione una opcón de nuevo.")
 
