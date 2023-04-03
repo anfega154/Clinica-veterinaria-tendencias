@@ -1,6 +1,6 @@
 from model.Administrador.UI.MenuAdministrador import MenuAdministrador
 from model.Persona.Persona import Persona
-from model.Vendedor.aplicacion.MenuVendedor import MenuVendedor
+from model.Vendedor.UI.MenuVendedor import MenuVendedor
 from model.Veterinaria.Veterinaria import Veterinaria
 from shared.login import login
 from shared.rolesEnum import Roles
