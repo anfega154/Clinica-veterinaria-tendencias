@@ -90,7 +90,7 @@ def comprar_medicamentos():
       try:
         mostrar_menu()
         opcion = input(
-            "Ingrese el número de opción del medicamento (0 para finalizar): ")
+            "Ingrese el número de opción del medicamento (0 para finalizar la compra): ")
         if opcion == "0":
             break
         elif opcion.isdigit() and int(opcion) in range(1, len(medicamentos) + 1):
@@ -118,5 +118,5 @@ def comprar_medicamentos():
     print(f"Total a pagar: ${total}")
 
 
-# Llamar a la función principal
+# Llamar a la función principal desde aqui
 #comprar_medicamentos()
