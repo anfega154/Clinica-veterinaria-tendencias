@@ -1,4 +1,4 @@
-from model.Vendedor.UI.VendedorBusiness import venderMedicamentos
+import VendedorBusiness
 
 def MenuVendedor():
     while True:
@@ -16,7 +16,7 @@ def MenuVendedor():
             print("# ver ordenes")
         elif opcion == "2":
             # vender medicamentos
-            print(venderMedicamentos)  
+            print(VendedorBusiness.comprar_medicamentos())  
 
         elif opcion == "3":
             # registrar factura
