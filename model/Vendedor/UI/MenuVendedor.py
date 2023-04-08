@@ -1,6 +1,6 @@
-import VendedorBusiness
+from model.Vendedor.VendedorBusiness import comprar_medicamentos
 
-def MenuVendedor():
+def MenuVendedor(veterinaria):
     while True:
         print("\nMenú:")
         print("1. Ver Orden")
@@ -16,7 +16,7 @@ def MenuVendedor():
             print("# ver ordenes")
         elif opcion == "2":
             # vender medicamentos
-            print(VendedorBusiness.comprar_medicamentos())  
+            print(comprar_medicamentos())  
 
         elif opcion == "3":
             # registrar factura
@@ -30,4 +30,4 @@ def MenuVendedor():
             print("Opción invalida. Por favor seleccione una opcón de nuevo.")
             return MenuVendedor()
         
-MenuVendedor()
+#MenuVendedor(veterinaria)
