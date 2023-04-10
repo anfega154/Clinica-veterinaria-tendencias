@@ -30,4 +30,4 @@ def MenuVendedor():
             print("Opción invalida. Por favor seleccione una opcón de nuevo.")
             return MenuVendedor()
         
-MenuVendedor()
+#MenuVendedor()

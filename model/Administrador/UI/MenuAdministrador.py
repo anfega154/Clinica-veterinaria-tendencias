@@ -1,5 +1,5 @@
 
-from model.Administrador.AdministradorBusiness import AfiliarEmpleado, EliminarEmpleado,ActualizarEmpleado
+from controllers.VeterinarioController.VeterinarioController import addEmpleado,EliminarEmpleado,actualizarEmpleado
 from shared.rolesEnum import Roles
 
 
@@ -26,7 +26,7 @@ def MenuAdministrador(veterinaria):
             usuario = input("\nIngrese el usuario del medico veterinario: ")
             contraseña = input(
                 "\nIngrese la contraseña del medico veterinario: ")
-            AfiliarEmpleado(veterinaria, nombreVeterinario,
+            addEmpleado(veterinaria, nombreVeterinario,
                             cedulaVeterinario, edad, rol, usuario, contraseña)
 
         elif opc == 2:
@@ -37,7 +37,7 @@ def MenuAdministrador(veterinaria):
             rol = Roles.vendedor.value
             usuario = input("\nIngrese el usuario del vendedor: ")
             contraseña = input("\nIngrese la contraseña del vendedor: ")
-            AfiliarEmpleado(veterinaria, nombreVendedor,
+            addEmpleado(veterinaria, nombreVendedor,
                             cedulaVendedor, edad, rol, usuario, contraseña)
 
         elif opc == 3:
@@ -51,7 +51,7 @@ def MenuAdministrador(veterinaria):
             nombre = input("\nIngrese el nombre del vendedor: ")
             edad = input("\nIngrese la edad del vendedor: ")
             contraseña = input("\nIngrese la contraseña del vendedor: ")
-            ActualizarEmpleado(veterinaria,cedula, nombre,  edad ,contraseña)
+            actualizarEmpleado(veterinaria,cedula, nombre,  edad ,contraseña)
 
         elif opc == 5:
             return "cerrar sesion"
