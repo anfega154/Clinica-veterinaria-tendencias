@@ -11,7 +11,8 @@ def AfiliarEmpleado(veterinaria,nombre,cedula,edad,rol,usuario,contraseña):
     if cedulaEncontrada != None:
         print("la cedula ya esta registrada")
         return
-    empleado = Persona(cedula,nombre,edad,rol, usuario, contraseña)
+    empleado = Persona(cedula,nombre,edad,rol)
+    empleado.registrarUsuarioYContraseña(usuario, contraseña)
     veterinaria.personas.append(empleado)
     print("se ha registrado empleado con exito")
 
