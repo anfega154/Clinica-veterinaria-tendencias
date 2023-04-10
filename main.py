@@ -15,9 +15,12 @@ admin.registrarUsuarioYContraseña("admin", "admin")
 veterinario1 = Persona("1152189806", "uberney", 32, Roles.veterinario.value)
 veterinario1.registrarUsuarioYContraseña("uzapatap", "realmadrid")
 dueño1 = DueñoMascota("123456", "camila", 24)
+vendedor1 = Persona("1152", "Jhon", 29, Roles.vendedor.value)
+vendedor1.registrarUsuarioYContraseña("jhon","cristiano")
 veterinaria = Veterinaria()
 veterinaria.personas.append(admin)
 veterinaria.personas.append(veterinario1)
+veterinaria.personas.append(vendedor1)
 veterinaria.personas.append(dueño1)
 usuario = False
 salir = False
