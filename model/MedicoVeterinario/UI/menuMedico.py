@@ -122,8 +122,21 @@ def menuMedicoVeterinario(veterinaria, veterinario):
             
             historiaClinica = consultaHistoriaClinicaDeMascota(veterinaria, str(mascota.id))
             
-            for key, value in historiaClinica.items():
-                print(key + ":", value)
+            for fecha, registro in historiaClinica.items():
+                print(f"Fecha: {fecha}")
+                print(f"Medico Veterinario: {registro['medico_veterinario']}")
+                print(f"Motivo de Consulta: {registro['motivo_consulta']}")
+                print(f"Sintomatología: {registro['sintomatologia']}")
+                print(f"Diagnóstico: {registro['diagnostico']}")
+                print(f"Procedimiento: {registro['procedimiento']}")
+                print(f"Medicamento: {registro['medicamento']}")
+                print(f"Dosis de Medicamento: {registro['dosis_medicamento']}")
+                print(f"ID de Orden: {registro['ID_orden']}")
+                print(f"Historial de Vacunación: {registro['historial_vacunacion']}")
+                print(f"Alergias a Medicamentos: {registro['alergias_medicamentos']}")
+                print(f"Detalle del Procedimiento: {registro['detalle_procedimiento']}")
+                print(f"Anulación de Orden: {registro['anulacion_orden']}")
+                print("--------------------------")
             
             
         elif opc == 7:
