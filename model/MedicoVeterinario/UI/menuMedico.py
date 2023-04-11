@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 from controllers.VeterinarioController.VeterinarioController import AgregarMascota, CrearHistoriaClinica, AgregarDueñoMascota, BuscarDueñoMascota, buscarMascotaDeDueño, consultaHistoriaClinicaDeMascota
 from model.MedicoVeterinario.MedicoVeterinarioBusiness import AfiliarDueñoMascota, buscarCedula
 from shared.rolesEnum import Roles
@@ -81,7 +81,7 @@ def menuMedicoVeterinario(veterinaria, veterinario):
             print("**************************************************************")
             print(f"creacion de historia clinica para {mascota.nombre}")
             
-            fechaConsulta = str(date.today())
+            fechaConsulta = str(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
             profesionalAtiende = veterinario.nombre
             idMascota = str(mascota.id)
             motivoConsulta = input("Motivo por el que consulta: ")
@@ -121,7 +121,8 @@ def menuMedicoVeterinario(veterinaria, veterinario):
                 break
             
             historiaClinica = consultaHistoriaClinicaDeMascota(veterinaria, str(mascota.id))
-            
+            print("*****************************************************")
+            print("*************HISTORIA CLINICA************************")
             for fecha, registro in historiaClinica.items():
                 print(f"Fecha: {fecha}")
                 print(f"Medico Veterinario: {registro['medico_veterinario']}")
@@ -135,8 +136,8 @@ def menuMedicoVeterinario(veterinaria, veterinario):
                 print(f"Historial de Vacunación: {registro['historial_vacunacion']}")
                 print(f"Alergias a Medicamentos: {registro['alergias_medicamentos']}")
                 print(f"Detalle del Procedimiento: {registro['detalle_procedimiento']}")
-                print(f"Anulación de Orden: {registro['anulacion_orden']}")
-                print("--------------------------")
+                print(f"Anulación de Orden: {registro['estado_orden']}")
+                print("------------------------------------------------------------")
             
             
         elif opc == 7:
