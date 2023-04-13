@@ -1,6 +1,6 @@
 from model.DueñoMascota.DueñoMascotaBussines import AfiliarDueñoMascota, buscarCedula, ConsultarMascotasDueño
 from model.Mascota.MascotaBusiness import afiliarMascota
-from model.MedicoVeterinario.MedicoVeterinarioBusiness import ObtenerHistoriaClinicaPorId, crearHistoriaClinica
+from model.MedicoVeterinario.MedicoVeterinarioBusiness import ActualizarHistoriaClinica, CrearOrden, ObtenerHistoriaClinicaPorId, crearHistoriaClinica
 from model.Administrador.AdministradorBusiness import AfiliarEmpleado,EliminarEmpleado,ActualizarEmpleado
 from shared.rolesEnum import Roles
 
@@ -27,7 +27,7 @@ def AgregarDueñoMascota(veterinaria, cedulaDueño, nombreDueño, edad, rol):
         print("la edad debe ser numerica")
         return
     print("------------validacion exitosa---------------------")
-    AfiliarDueñoMascota(veterinaria, nombreDueño, cedula, edad)
+    AfiliarDueñoMascota(veterinaria, nombreDueño, str(cedula), edad)
 
 def BuscarDueñoMascota(veterinaria, cedula):
     if cedula == None or cedula == " ":
@@ -110,6 +110,12 @@ def CrearHistoriaClinica(veterinaria, idMascota, fechaConsulta, profesionalAtien
     
 def consultaHistoriaClinicaDeMascota(veterinaria, id):
     return ObtenerHistoriaClinicaPorId(veterinaria,id)
+
+def crearOrden (veterinaria, idOrden, idMascota, cedulaDueño, veterinarioCedula, medicamento, dosis, fechaConsulta ):
+    CrearOrden(veterinaria, idOrden, idMascota, cedulaDueño, veterinarioCedula, medicamento, dosis, fechaConsulta)
+    
+def actualizarHistoriaClinica(veterinaria, idMascota, fechaConsulta, campoParaModificar, nuevoCampo):
+    ActualizarHistoriaClinica(veterinaria,  idMascota, fechaConsulta, campoParaModificar, nuevoCampo):
     
     
     
