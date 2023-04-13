@@ -27,4 +27,23 @@ def crearHistoriaClinica(veterinaria, idMascota, fechaConsulta, profesionalAtien
      
 def ObtenerHistoriaClinicaPorId(veterinaria, id):
      return veterinaria.historiaClinica[id]
+
+def CrearOrden (veterinaria, idOrden, idMascota, cedulaDueño, veterinarioCedula, medicamento, dosis, fechaConsulta):
+     if idOrden not in veterinaria.ordenes:
+          veterinaria.ordenes[idOrden] = {}
+     veterinaria.ordenes[idOrden] = {
+          'id_orden': idOrden,
+          'id_mascota': idMascota,
+          "cedula_dueño": cedulaDueño,
+          "cedula_veterinario": veterinarioCedula,
+          "medicamentos": medicamento,
+          "dosis": dosis,
+          "fecha_generacion": fechaConsulta
+     }
+     print("-------------------------Orden Creada----------------------------")
+     
+def ActualizarHistoriaClinica(veterinaria,  idMascota, fechaConsulta, campoParaModificar, nuevoCampo):
+     historiaClinica = veterinaria.historiaClinica[idMascota][fechaConsulta]
+     historiaClinica[campoParaModificar] = nuevoCampo
+     
      
