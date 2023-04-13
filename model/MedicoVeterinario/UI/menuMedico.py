@@ -1,5 +1,5 @@
 from datetime import datetime
-from controllers.VeterinarioController.VeterinarioController import AgregarMascota, CrearHistoriaClinica, AgregarDueñoMascota, BuscarDueñoMascota, actualizarHistoriaClinica, buscarMascotaDeDueño, consultaHistoriaClinicaDeMascota, crearOrden
+from controllers.VeterinarioController.VeterinarioController import AgregarMascota, AnularOrden, BuscarOrdenesDeMascota, CrearHistoriaClinica, AgregarDueñoMascota, BuscarDueñoMascota, actualizarHistoriaClinica, actualizarOrden, buscarMascotaDeDueño, consultaHistoriaClinicaDeMascota, crearOrden
 from model.MedicoVeterinario.MedicoVeterinarioBusiness import AfiliarDueñoMascota, buscarCedula
 from shared.especiesEnum import Especies
 from shared.rolesEnum import Roles
@@ -187,7 +187,7 @@ def menuMedicoVeterinario(veterinaria, veterinario):
                 dosis= input("dosis: ")
                 idOrden= str(uuid.uuid4())
                 estadoOrden = "Activa"
-                crearOrden(veterinaria, idOrden, idMascota, cedulaDueño, veterinario.cedula, medicamento, dosis, fechaConsulta)
+                crearOrden(veterinaria, idOrden, idMascota, cedulaDueño, veterinario.cedula, medicamento, dosis, fechaConsulta, estadoOrden)
             else:
                 medicamento = "ninguno"
                 dosis = "ninguno"
@@ -199,9 +199,6 @@ def menuMedicoVeterinario(veterinaria, veterinario):
             else:
                 vacunas = "Ninguna"
                 
-            
-            
-            
             CrearHistoriaClinica(veterinaria, idMascota, fechaConsulta, profesionalAtiende, motivoConsulta, sintomatologia, diagnostico, procedimiento, medicamento, dosis, idOrden, estadoOrden, vacunas, alergiaMedicamentos, detalleProcedimiento )
             
             for key, value in veterinaria.historiaClinica.items():
@@ -281,22 +278,22 @@ def menuMedicoVeterinario(veterinaria, veterinario):
                 print(f"Historial de Vacunación: {registro['historial_vacunacion']}")
                 print(f"Alergias a Medicamentos: {registro['alergias_medicamentos']}")
                 print(f"Detalle del Procedimiento: {registro['detalle_procedimiento']}")
-                print(f"Anulación de Orden: {registro['estado_orden']}")
+                print(f"Estado de la Orden: {registro['estado_orden']}")
                 print("------------------------------------------------------------")
            
            
             while True:
                 print("que campo desea editar?")
-                print("1. motivo_consulta")
-                print("2. sintomatologia")
-                print("3. diagnostico")
-                print("4. procedimiento")
-                print("5. medicamento")
-                print("6. dosis_medicamento")
-                print("7. vacunacion")
-                print("8. alergias_medicamentos")
-                print("9. detalle_procedimiento")
-                print("10. dejar de editar")
+                print("1. motivo_consulta: ")
+                print("2. sintomatologia: ")
+                print("3. diagnostico: ")
+                print("4. procedimiento: ")
+                print("5. medicamento: ")
+                print("6. dosis_medicamento: ")
+                print("7. vacunacion: ")
+                print("8. alergias_medicamentos: ")
+                print("9. detalle_procedimiento: ")
+                print("10. dejar de editar: ")
                 
                 try:
                     opcionEditar = int(input("Ingrese el numero del campo que desea actualizar"))
@@ -306,24 +303,126 @@ def menuMedicoVeterinario(veterinaria, veterinario):
                 if opcionEditar == 1:
                     fechaConsulta = input("copie y pegue la fecha de la HC a la cual desea editar")
                     nuevoMotivoConsulta = input("Ingrese el nuevo motivo de consulta")
-                    actualizarHistoriaClinica(veterinaria, str(mascota.id), fechaConsulta, "motivo_consulta", nuevoMotivoConsulta  )
-                
-                elif opcionEditar == 2
-                elif opcionEditar == 3
-                elif opcionEditar == 4
-                elif opcionEditar == 5
-                elif opcionEditar == 6
-                elif opcionEditar == 7
-                elif opcionEditar == 8
-                elif opcionEditar == 9
-                elif opcionEditar == 10
+                    actualizarHistoriaClinica(veterinaria, str(mascota.id), fechaConsulta, "motivo_consulta", nuevoMotivoConsulta)
+                elif opcionEditar == 2:
+                    fechaConsulta = input("copie y pegue la fecha de la HC a la cual desea editar")
+                    nuevaSintomatologia = input("Ingrese la sintomatologia")
+                    actualizarHistoriaClinica(veterinaria, str(mascota.id), fechaConsulta, "sintomatologia", nuevaSintomatologia)
+                elif opcionEditar == 3:
+                    fechaConsulta = input("copie y pegue la fecha de la HC a la cual desea editar")
+                    nuevDiagnostico = input("Ingrese el diagnostico")
+                    actualizarHistoriaClinica(veterinaria, str(mascota.id), fechaConsulta, "diagnostico", nuevDiagnostico)
+                elif opcionEditar == 4:
+                    fechaConsulta = input("copie y pegue la fecha de la HC a la cual desea editar")
+                    nuevoProcedimiento = input("Ingrese el procedimiento")
+                    actualizarHistoriaClinica(veterinaria, str(mascota.id), fechaConsulta, "procedimiento", nuevoProcedimiento)
+                elif opcionEditar == 5:
+                    fechaConsulta = input("copie y pegue la fecha de la HC a la cual desea editar")
+                    nuevoMedicamento = input("Ingrese la informacion del/los medciamento/s")
+                    actualizarHistoriaClinica(veterinaria, str(mascota.id), fechaConsulta, "medicamento", nuevoMedicamento)
+                    actualizarOrden(veterinaria, fechaConsulta, "medicamentos", nuevoMedicamento)
+                elif opcionEditar == 6:
+                    fechaConsulta = input("copie y pegue la fecha de la HC a la cual desea editar")
+                    nuevaDosis = input("Ingrese la informacion de la dosis")
+                    actualizarHistoriaClinica(veterinaria, str(mascota.id), fechaConsulta, "medicamento", nuevaDosis)
+                    actualizarOrden(veterinaria, fechaConsulta, "dosis", nuevaDosis)
+                elif opcionEditar == 7:
+                    fechaConsulta = input("copie y pegue la fecha de la HC a la cual desea editar")
+                    nuevaVacunacion = input("Ingrese la vacuna")
+                    actualizarHistoriaClinica(veterinaria, str(mascota.id), fechaConsulta, "vacunacion", nuevaVacunacion)
+                elif opcionEditar == 8:
+                    fechaConsulta = input("copie y pegue la fecha de la HC a la cual desea editar")
+                    nuevaAlergiasMedicamento = input("Ingrese las alergias a medicamentos")
+                    actualizarHistoriaClinica(veterinaria, str(mascota.id), fechaConsulta, "alergias_medicamentos", nuevaAlergiasMedicamento)
+                elif opcionEditar == 9:
+                    fechaConsulta = input("copie y pegue la fecha de la HC a la cual desea editar")
+                    nuevoDetalleProcedimiento = input("Ingrese los detalles del procedimiento")
+                    actualizarHistoriaClinica(veterinaria, str(mascota.id), fechaConsulta, "detalle_procedimiento", nuevoDetalleProcedimiento)
+                elif opcionEditar == 10:
+                    break
                 else:
                     print("Opcion no valida")
                 
         elif opc == 8:
-            print("here: "+str(opc))
+            print("\nConsultar Orden")
+            cedulaDueño = input("\nIngrese la cedula del dueño de la mascota: ") 
+            mascotas = buscarMascotaDeDueño(veterinaria, cedulaDueño)
+            print("\nA cual de las siguientes mascotas desea consultar la orden?")
+            
+            for indice, mascotaDelDueño in enumerate(mascotas):
+                print(f"indice: {indice} identificacion mascota: {mascotaDelDueño.id} nombre mascota: {mascotaDelDueño.nombre}")
+            
+            while True:
+                indice = int(input("Ingrese el indice de la mascota que realiza la consulta de la orden: "))
+                if indice < 0 or indice >= len(mascotas):
+                    print("opcion invalida no corresponde al indice de las mascotas")
+                    return
+                mascota = mascotas[indice]
+                break
+            
+            ordenes = BuscarOrdenesDeMascota(veterinaria, str(mascota.id))
+            i = 0
+            for orden in ordenes:
+                print("***************************************************************")
+                print("ORDEN CON INDICE: ", i)
+                print("ID Orden: ", orden['id_orden'])
+                print("ID Mascota: ", orden['id_mascota'])
+                print("Cedula dueño: ", orden['cedula_dueño'])
+                print("Cedula veterinario: ", orden['cedula_veterinario'])
+                print("Medicamentos: ", orden['medicamentos'])
+                print("Dosis: ", orden['dosis'])
+                print("Fecha generacion: ", orden['fecha_generacion'])
+                print("Estado de la orden: ", orden['estado_orden'])
+                print("*************************************************************")
+                i = i + 1
+
         elif opc == 9:
-            print("here: "+str(opc))
+            print("\nAnular Orden")
+            print("\nConsultar Orden")
+            cedulaDueño = input("\nIngrese la cedula del dueño de la mascota: ") 
+            mascotas = buscarMascotaDeDueño(veterinaria, cedulaDueño)
+            print("\nA cual de las siguientes mascotas desea consultar la orden?")
+            
+            for indice, mascotaDelDueño in enumerate(mascotas):
+                print(f"indice: {indice} identificacion mascota: {mascotaDelDueño.id} nombre mascota: {mascotaDelDueño.nombre}")
+            
+            while True:
+                indice = int(input("Ingrese el indice de la mascota que realiza la consulta de la orden: "))
+                if indice < 0 or indice >= len(mascotas):
+                    print("opcion invalida no corresponde al indice de las mascotas")
+                    return
+                mascota = mascotas[indice]
+                break
+            
+            ordenes = BuscarOrdenesDeMascota(veterinaria, mascota.id)
+            i = 0
+            for orden in ordenes:
+                print("Indice: ", i)
+                print("ID Orden: ", orden['id_orden'])
+                print("ID Mascota: ", orden['id_mascota'])
+                print("Cedula dueño: ", orden['cedula_dueño'])
+                print("Cedula veterinario: ", orden['cedula_veterinario'])
+                print("Medicamentos: ", orden['medicamentos'])
+                print("Dosis: ", orden['dosis'])
+                print("Fecha generacion: ", orden['fecha_generacion'])
+                i = i + 1
+            
+            while True:
+                try:
+                    ordenParaAnular = int(input("digite el indice de la orden que desea anular: "))
+                    if ordenParaAnular < 0 or ordenParaAnular > len(ordenes):
+                        print("el indice que digito no es valido")
+                        return
+                    else:
+                        orden = ordenes[0]
+                        idOrden = orden["id_orden"]
+                        fechaConsulta = orden["fecha_generacion"]
+                        break
+                except:
+                    print("Debe ingresar un valor numerico")
+                    continue
+            AnularOrden(veterinaria, idOrden)
+            actualizarHistoriaClinica(veterinaria, str(mascota.id), fechaConsulta, "estado_orden", "Anulado")
         elif opc == 10:
             return "cerrar sesion"
         elif opc == 11:
