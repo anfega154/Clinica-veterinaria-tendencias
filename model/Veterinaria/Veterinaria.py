@@ -3,12 +3,14 @@ from datetime import datetime
 
 class Veterinaria:
     historiaClinica = {}
+    ordenes = {}
     def __init__(self):
         self.personas = [] 
         self.mascotas = [] 
         self.facturas = []
         self.orden = []
 
+<<<<<<< HEAD
     def ordenMascota(self,idMascota,cedulaDueno,CedulaVeterinario,dosis):
         self.idOrden = str(uuid.uuid4())
         self.idMascota = idMascota
@@ -28,3 +30,5 @@ class Veterinaria:
 
         
 
+=======
+>>>>>>> main
