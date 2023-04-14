@@ -1,36 +1,32 @@
 import uuid
 from datetime import date
-
-
+from model.DueñoMascota.DueñoMascotaBussines import AfiliarDueñoMascota, buscarCedula
 from shared.rolesEnum import Roles
+
 
 def venderMedicamentos(vendedor, cedula):
     for vendedor in vendedor.personas:
         if vendedor.cedula == cedula:
             return vendedor
         return False
-OrdenMedica = {
-        "IdOrden" : "1234",
-        "idMascota": "6789",
-        "CedulaDueno":"1152",
-        "CedulaVeterinario": "2233"
-    }
-def ObtenerOrdenPorId():
-     return OrdenMedica  
-        
 
 medicamentos = {
-    "Desparacitante para perro: $10000": 10000,
-    "Desparacitante para gato: $15000": 15000,
-    "Prevención de pulgas y garrapatas: 12000": 12000,
-    "Prevención del gusano del corazón: $20000": 20000,
-    "Analgésico: $25000": 25000
+    "Desparacitante_perros": 10000,
+    "Desparacitante_gato": 15000,
+    "Prevención_pulgas": 12000,
+    "Prevención_garrapatas": 20000,
+    "Aspirina": 2500,
+    "Acetaminofen": 1500,
+    "Suero":5000,
+    "Amoxicilina": 20000,
+    "Gotas_Ojos": 40000
+
 }
 
 def mostrar_menu():
     print("\nSeleccione el medicamento que desea comprar:")
-    for i, medicamento in enumerate(medicamentos.keys(), start=1):
-        print(f"{i}. {medicamento}")
+    for key, value in medicamentos.items():
+                        print(key + ":", value)
 
 def calcular_total(compras):
     total = 0
@@ -68,32 +64,43 @@ def comprar_medicamentos():
     print("Carrito de compras:")
     for medicamento, cantidad in compras.items():
         print(f"{cantidad} {medicamento}")
+    
+    compras_string = ""
+    for medicamento, cantidad in compras.items():
+        compras_string += f"{cantidad} {medicamento}, "
+    compras_string = compras_string[:-2] + "."
+
+    print("Carrito de compras:")
+    print(compras_string)
 
     total = calcular_total(compras)
     print(f"Total a pagar: ${total}")
-
-class Factura:
-    def __init__(self, idMascota, cedulaDueño, nombreProducto, valor, cantidad):
-        self.idFactura = str(uuid.uuid4())
-        self.idMascota = str(idMascota)
-        self.cedulaDueño = cedulaDueño
-        self.nombreProducto = nombreProducto
-        self.valor = valor
-        self.cantidad = cantidad
-        self.fecha = str(date.today())
-
-    def MostrarFactura(self):
-        print("*****Factura*****")
-        print("Id de la factura: ",self.idFactura)
-        print("Id mascota: ",self.idMascota)
-        print("Cedula dueño ",self.cedulaDueño)
-        print("Nombre del producto: ",self.nombreProducto)
-        print("Valor a pagar: ",self.valor)
-        print("Cantidad: ",self.cantidad)
-        print("Fecha: ",self.fecha)
-
+    return compras
+         
     
-    
+def BuscarOrden(veterinaria, fechaGeneracion):
+     for orden in veterinaria.ordenes.values():
+          if orden['fecha_generacion'] == fechaGeneracion:
+              return orden
+          else:
+               return False
+          
+def BuscarOrdenPorIdMascota(veterinaria, idMascota):
+     ordenes_por_mascota = []
+     for orden in veterinaria.ordenes.values():
+          if orden['id_mascota'] == idMascota:
+               ordenes_por_mascota.append(orden)
+     return ordenes_por_mascota
+
+def BuscarOrdenPorIdOrden(veterinaria, idOrden):
+     for orden in veterinaria.ordenes.values():
+          if orden['id_orden'] == idOrden:
+              return orden
+          else:
+               return False  
+          
+"""    for edicamentos in enumerate(medicamentos.keys(), start=1):
+        print(key + ":", value) """
 
 
 

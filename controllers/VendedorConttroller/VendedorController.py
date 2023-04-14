@@ -1,5 +1,5 @@
-from model.Vendedor.VendedorBusiness import ObtenerOrdenPorId
+from model.Vendedor.VendedorBusiness import BuscarOrden
 
-def ConsultarOrden ():
-    return ObtenerOrdenPorId()
 
+def buscarOrden(veterinaria, fechaGeneracion):
+    return BuscarOrden(veterinaria, fechaGeneracion)
