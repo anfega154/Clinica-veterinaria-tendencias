@@ -1,8 +1,23 @@
+import uuid
+from datetime import date
+
+
+from shared.rolesEnum import Roles
+
 def venderMedicamentos(vendedor, cedula):
     for vendedor in vendedor.personas:
         if vendedor.cedula == cedula:
             return vendedor
         return False
+OrdenMedica = {
+        "IdOrden" : "1234",
+        "idMascota": "6789",
+        "CedulaDueno":"1152",
+        "CedulaVeterinario": "2233"
+    }
+def ObtenerOrdenPorId():
+     return OrdenMedica  
+        
 
 medicamentos = {
     "Desparacitante para perro: $10000": 10000,
@@ -56,4 +71,31 @@ def comprar_medicamentos():
 
     total = calcular_total(compras)
     print(f"Total a pagar: ${total}")
+
+class Factura:
+    def __init__(self, idMascota, cedulaDueño, nombreProducto, valor, cantidad):
+        self.idFactura = str(uuid.uuid4())
+        self.idMascota = str(idMascota)
+        self.cedulaDueño = cedulaDueño
+        self.nombreProducto = nombreProducto
+        self.valor = valor
+        self.cantidad = cantidad
+        self.fecha = str(date.today())
+
+    def MostrarFactura(self):
+        print("*****Factura*****")
+        print("Id de la factura: ",self.idFactura)
+        print("Id mascota: ",self.idMascota)
+        print("Cedula dueño ",self.cedulaDueño)
+        print("Nombre del producto: ",self.nombreProducto)
+        print("Valor a pagar: ",self.valor)
+        print("Cantidad: ",self.cantidad)
+        print("Fecha: ",self.fecha)
+
+    
+    
+
+
+
+
 
