@@ -106,31 +106,126 @@ def buscarMascotaDeDueño(veterinaria, cedulaDueño):
     return ConsultarMascotasDueño(veterinaria, cedula)
 
 def CrearHistoriaClinica(veterinaria, idMascota, fechaConsulta, profesionalAtiende, motivoConsulta, sintomatologia, diagnostico, procedimiento, medicamento, dosis, idOrden, estadoOrden, vacunas, alergiaMedicamentos, detalleProcedimiento ):
-    crearHistoriaClinica(veterinaria, idMascota, fechaConsulta, profesionalAtiende, motivoConsulta, sintomatologia, diagnostico, procedimiento, medicamento, dosis, idOrden, estadoOrden, vacunas, alergiaMedicamentos, detalleProcedimiento )
+    if idMascota == None or idMascota == " ":
+        print("Id mascotas no pueden ser un espacio vacio")
+        return
+    
+    if profesionalAtiende == None or profesionalAtiende == " ":
+        print("la cedula no puede ser vacio")
+        return
+    try:
+        cedulaProfesional = int(profesionalAtiende)
+    except:
+        print("la cedula debe ser numerica")
+        return
+    
+    if motivoConsulta == None or motivoConsulta == " ":
+        print("Motivo onsulta no pueden ser un espacio vacio")
+        return
+    
+    if sintomatologia == None or sintomatologia == " ":
+        print("sintomatologia no pueden ser un espacio vacio")
+        return
+    
+    if diagnostico == None or diagnostico == " ":
+        print("diagnostico no pueden ser un espacio vacio")
+        return
+    
+    if procedimiento == None or procedimiento == " ":
+        print("procedimiento no pueden ser un espacio vacio")
+        return
+    
+    if alergiaMedicamentos == None or alergiaMedicamentos == " ":
+        print("Alergia medicamentos no pueden ser un espacio vacio")
+        return
+    
+    if detalleProcedimiento == None or detalleProcedimiento == " ":
+        print("Detalle procedimiento no pueden ser un espacio vacio")
+        return
+    
+    crearHistoriaClinica(veterinaria, idMascota, fechaConsulta, str(cedulaProfesional), motivoConsulta, sintomatologia, diagnostico, procedimiento, medicamento, dosis, idOrden, estadoOrden, vacunas, alergiaMedicamentos, detalleProcedimiento )
     
 def consultaHistoriaClinicaDeMascota(veterinaria, id):
     return ObtenerHistoriaClinicaPorId(veterinaria,id)
 
 def crearOrden (veterinaria, idOrden, idMascota, cedulaDueño, veterinarioCedula, medicamento, dosis, fechaConsulta, estadoOrden ):
-    CrearOrden(veterinaria, idOrden, idMascota, cedulaDueño, veterinarioCedula, medicamento, dosis, fechaConsulta, estadoOrden)
+    if idMascota == None or idMascota == " ":
+        print("Id mascotas no pueden ser un espacio vacio")
+        return
+    
+    if cedulaDueño == None or cedulaDueño == " ":
+        print("la cedula no puede ser vacio")
+        return
+    try:
+        cedula = int(cedulaDueño)
+    except:
+        print("la cedula debe ser numerica")
+        return
+    
+    if veterinarioCedula == None or veterinarioCedula == " ":
+        print("la cedula no puede ser vacio")
+        return
+    try:
+        cedulaProfesional = int(veterinarioCedula)
+    except:
+        print("la cedula debe ser numerica")
+        return
+    
+    if medicamento == None or medicamento == " ":
+        print("medicamento no pueden ser un espacio vacio")
+        return
+    
+    if dosis == None or dosis == " ":
+        print("dosis no pueden ser un espacio vacio")
+        return
+    
+    if estadoOrden == None or estadoOrden == " ":
+        print("Estado orden no pueden ser un espacio vacio")
+        return
+    CrearOrden(veterinaria, idOrden, idMascota, cedula, cedulaProfesional, medicamento, dosis, fechaConsulta, estadoOrden)
     
 def actualizarHistoriaClinica(veterinaria, idMascota, fechaConsulta, campoParaModificar, nuevoCampo):
+    if fechaConsulta == None or fechaConsulta == " ":
+        print("Fecha no pueden ser un espacio vacio")
+        return
+    
+    if idMascota == None or idMascota == " ":
+        print("id Mascota orden no pueden ser un espacio vacio")
+        return
+    
+    if nuevoCampo == None or nuevoCampo == " ":
+        print(f"Informacion del campo {campoParaModificar} no pueden estar vacio")
+        return
     ActualizarHistoriaClinica(veterinaria,  idMascota, fechaConsulta, campoParaModificar, nuevoCampo)
 
 def buscarOrden(veterinaria, fechaGeneracion):
+    if fechaGeneracion == None or fechaGeneracion == " ":
+        print("Fecha consulta no pueden ser un espacio vacio")
+        return
     return BuscarOrden(veterinaria, fechaGeneracion)
 
 def actualizarOrden(veterinaria, fechaGeneracion, campo, nuevoCampo):
+    if fechaGeneracion == None or fechaGeneracion == " ":
+        print("Fecha consulta no pueden ser un espacio vacio")
+        return
+    
+    if nuevoCampo == None or nuevoCampo == " ":
+        print(f"la informacion del campo {nuevoCampo} no pueden ser un espacio vacio")
+        return
     ActualizarOrden(veterinaria, fechaGeneracion, campo, nuevoCampo)
     
 def BuscarOrdenesDeMascota(veterinaria, idMascota):
+    if idMascota == None or idMascota == " ":
+        print("Id mascotas no pueden ser un espacio vacio")
+        return
     return BuscarOrdenPorIdMascota(veterinaria, idMascota)
 
 def AnularOrden(veterinaria, idOrden):
+    if idOrden == None or idOrden == " ":
+        print("Id orden no pueden ser un espacio vacio")
+        return
     AnularOrdenPorIdOrden(veterinaria, idOrden)
-    
-    
-    
+
 def addEmpleado(veterinaria,nombre,cedula,edad,rol,usuario,contraseña):
     if nombre== None or nombre == " ":
         print("el nombre no puede ser un espacio vacio")
