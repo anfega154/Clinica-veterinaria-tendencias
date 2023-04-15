@@ -414,7 +414,7 @@ def menuMedicoVeterinario(veterinaria, veterinario):
                         print("el indice que digito no es valido")
                         return
                     else:
-                        orden = ordenes[0]
+                        orden = ordenes[ordenParaAnular]
                         idOrden = orden["id_orden"]
                         fechaConsulta = orden["fecha_generacion"]
                         break
