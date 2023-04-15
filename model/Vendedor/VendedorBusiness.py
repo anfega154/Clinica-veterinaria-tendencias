@@ -11,29 +11,24 @@ def venderMedicamentos(vendedor, cedula):
         return False
 
 medicamentos = {
-    "Desparacitante_perros": 10000,
+    "Desparacitante_perro": 10000,
     "Desparacitante_gato": 15000,
     "Prevención_pulgas": 12000,
     "Prevención_garrapatas": 20000,
+    "Analgésico": 25000,
     "Aspirina": 2500,
     "Acetaminofen": 1500,
     "Suero":5000,
     "Amoxicilina": 20000,
     "Gotas_Ojos": 40000
-
 }
 
 def mostrar_menu():
     print("\nSeleccione el medicamento que desea comprar:")
+    i=1
     for key, value in medicamentos.items():
-                        print(key + ":", value)
-
-def calcular_total(compras):
-    total = 0
-    for medicamento, cantidad in compras.items():
-        precio = medicamentos[medicamento]
-        total += precio * cantidad
-    return total
+                        print(f"{i}.  {key}  :{value}")
+                        i=i+1
 
 def comprar_medicamentos():
     compras = {}
@@ -46,14 +41,15 @@ def comprar_medicamentos():
             break
         elif opcion.isdigit() and int(opcion) in range(1, len(medicamentos) + 1):
             medicamento = list(medicamentos.keys())[int(opcion) - 1]
+            valor = list(medicamentos.values())[int(opcion) - 1]
             cantidad = input(
                 f"Ingrese la cantidad de {medicamento} que desea comprar: ")
             if cantidad.isdigit():
                 cantidad = int(cantidad)
                 if medicamento in compras:
-                    compras[medicamento] += cantidad
+                    compras[medicamento]={"cantidad": cantidad, "precio":valor}
                 else:
-                    compras[medicamento] = cantidad
+                    compras[medicamento]={"cantidad": cantidad, "precio":valor}
                 print(f"{cantidad} {medicamento} x unidad agregado(s) a su compra.")
             else:
                 print("Cantidad inválida. Intente nuevamente.")
@@ -64,17 +60,6 @@ def comprar_medicamentos():
     print("Carrito de compras:")
     for medicamento, cantidad in compras.items():
         print(f"{cantidad} {medicamento}")
-    
-    compras_string = ""
-    for medicamento, cantidad in compras.items():
-        compras_string += f"{cantidad} {medicamento}, "
-    compras_string = compras_string[:-2] + "."
-
-    print("Carrito de compras:")
-    print(compras_string)
-
-    total = calcular_total(compras)
-    print(f"Total a pagar: ${total}")
     return compras
          
     
@@ -99,8 +84,8 @@ def BuscarOrdenPorIdOrden(veterinaria, idOrden):
           else:
                return False  
           
-"""    for edicamentos in enumerate(medicamentos.keys(), start=1):
-        print(key + ":", value) """
+# """    for edicamentos in enumerate(medicamentos.keys(), start=1):
+#         print(key + ":", value) """
 
 
 
