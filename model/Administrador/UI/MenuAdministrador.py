@@ -1,5 +1,5 @@
 
-from controllers.VeterinarioController.VeterinarioController import addEmpleado,EliminarEmpleado,actualizarEmpleado
+from controllers.administradorController.administradorController import addEmpleado,deleteEmpleado,actualizarEmpleado
 from shared.rolesEnum import Roles
 
 
@@ -43,7 +43,9 @@ def MenuAdministrador(veterinaria):
         elif opc == "3":
             print("\nEliminar un perfil")
             cedula = input("\nIngrese el numero de la cedula a eliminar: ")
-            EliminarEmpleado(veterinaria, cedula)
+            deleteEmpleado(veterinaria,cedula)
+            
+
 
         elif opc == "4":
             print("\nActualizar Usuario")

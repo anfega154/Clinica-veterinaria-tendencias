@@ -21,7 +21,6 @@ veterinaria = Veterinaria()
 veterinaria.personas.append(admin)
 veterinaria.personas.append(veterinario1)
 veterinaria.personas.append(vendedor1)
-veterinaria.personas.append(dueño1)
 usuario = False
 salir = False
 
