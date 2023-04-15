@@ -13,9 +13,9 @@ def MenuAdministrador(veterinaria):
         print("5. cerrar sesion")
         print("6. Salir")
 
-        opc = int(input("\nIngrese una opción: "))
+        opc = input("\nIngrese una opción: ")
 
-        if opc == 1:
+        if opc == "1":
             print("\nRegistrar medico veterinario")
             cedulaVeterinario = input(
                 "\nIngrese la cedula del medico veterinario: ")
@@ -29,7 +29,7 @@ def MenuAdministrador(veterinaria):
             addEmpleado(veterinaria, nombreVeterinario,
                             cedulaVeterinario, edad, rol, usuario, contraseña)
 
-        elif opc == 2:
+        elif opc == "2":
             print("\nRegistrar Vendedor")
             cedulaVendedor = input("\nIngrese la cedula del vendedor: ")
             nombreVendedor = input("\nIngrese el nombre del vendedor: ")
@@ -40,12 +40,12 @@ def MenuAdministrador(veterinaria):
             addEmpleado(veterinaria, nombreVendedor,
                             cedulaVendedor, edad, rol, usuario, contraseña)
 
-        elif opc == 3:
+        elif opc == "3":
             print("\nEliminar un perfil")
             cedula = input("\nIngrese el numero de la cedula a eliminar: ")
             EliminarEmpleado(veterinaria, cedula)
 
-        elif opc == 4:
+        elif opc == "4":
             print("\nActualizar Usuario")
             cedula = input("\nIngrese la cedula del vendedor: ")
             nombre = input("\nIngrese el nombre del vendedor: ")
@@ -53,10 +53,10 @@ def MenuAdministrador(veterinaria):
             contraseña = input("\nIngrese la contraseña del vendedor: ")
             actualizarEmpleado(veterinaria,cedula, nombre,  edad ,contraseña)
 
-        elif opc == 5:
+        elif opc == "5":
             return "cerrar sesion"
 
-        elif opc == 6:
+        elif opc == "6":
             return "salir"
 
         else:

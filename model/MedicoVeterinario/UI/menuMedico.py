@@ -23,9 +23,9 @@ def menuMedicoVeterinario(veterinaria, veterinario):
         print("9. Anular orden")
         print("10. cerrar sesion")
         print("11. Salir")
-        opc = int(input("Ingrese una opción: "))
+        opc = input("Ingrese una opción: ")
 
-        if opc == 1:
+        if opc == "1":
             print("\nRegistrar dueño de la mascota")
             cedulaDueño = input(
                 "\nIngrese la cedula del dueño de la mascota: ")
@@ -36,7 +36,7 @@ def menuMedicoVeterinario(veterinaria, veterinario):
             AgregarDueñoMascota(veterinaria, cedulaDueño,
                                 nombreDueño, edad, rol)
 
-        elif opc == 2:
+        elif opc == "2":
             print("\nBuscar dueño de mascota")
             cedulaDueño = input(
                 "\nIngrese la cedula del dueño de la mascota: ")
@@ -46,7 +46,7 @@ def menuMedicoVeterinario(veterinaria, veterinario):
             print("La cedula le pertenece a:")
             print(duenoMascota)
 
-        elif opc == 3:
+        elif opc == "3":
             print("\nRegistrar mascota")
             idMascota = uuid.uuid4()
             nombreMascota = input("\nIngrese el nombre de la mascota: ")
@@ -83,13 +83,13 @@ def menuMedicoVeterinario(veterinaria, veterinario):
             AgregarMascota(veterinaria, duenoMascota, nombreMascota, cedulaDueño,
                            edadMascota, especie, raza, caracteristicas, peso, idMascota)
 
-        elif opc == 4:
+        elif opc == "4":
             print("\nConsultar mascota")
             cedulaDueño = input(
                 "\nIngrese la cedula del dueño de la mascota: ")
             mascotas = buscarMascotaDeDueño(veterinaria, cedulaDueño)
 
-        elif opc == 5:
+        elif opc == "5":
             print("\nCrear historia clinica")
             cedulaDueño = input(
                 "\nIngrese la cedula del dueño de la mascota: ")
@@ -207,7 +207,7 @@ def menuMedicoVeterinario(veterinaria, veterinario):
             for key, value in veterinaria.ordenes.items():
                 print(key + ":", value)
                 
-        elif opc == 6:
+        elif opc == "6":
             print("\nConsulta historia clinica")
             
             cedulaDueño = input("\nIngrese la cedula del dueño de la mascota: ") 
@@ -245,7 +245,7 @@ def menuMedicoVeterinario(veterinaria, veterinario):
                 print("------------------------------------------------------------")
             
             
-        elif opc == 7:
+        elif opc == "7":
             print("\nEditar historia clinica")
             cedulaDueño = input("\nIngrese la cedula del dueño de la mascota: ") 
             mascotas = buscarMascotaDeDueño(veterinaria, cedulaDueño)
@@ -343,7 +343,7 @@ def menuMedicoVeterinario(veterinaria, veterinario):
                 else:
                     print("Opcion no valida")
                 
-        elif opc == 8:
+        elif opc == "8":
             print("\nConsultar Orden")
             cedulaDueño = input("\nIngrese la cedula del dueño de la mascota: ") 
             mascotas = buscarMascotaDeDueño(veterinaria, cedulaDueño)
@@ -376,7 +376,7 @@ def menuMedicoVeterinario(veterinaria, veterinario):
                 print("*************************************************************")
                 i = i + 1
 
-        elif opc == 9:
+        elif opc == "9":
             print("\nAnular Orden")
             print("\nConsultar Orden")
             cedulaDueño = input("\nIngrese la cedula del dueño de la mascota: ") 
@@ -423,9 +423,9 @@ def menuMedicoVeterinario(veterinaria, veterinario):
                     continue
             AnularOrden(veterinaria, idOrden)
             actualizarHistoriaClinica(veterinaria, str(mascota.id), fechaConsulta, "estado_orden", "Anulado")
-        elif opc == 10:
+        elif opc == "10":
             return "cerrar sesion"
-        elif opc == 11:
+        elif opc == "11":
             return "salir"
         else:
             print("Opción inválida. Intente de nuevo.")
