@@ -1,3 +1,6 @@
+import uuid
+from datetime import datetime
+
 class Veterinaria:
     historiaClinica = {}
     ordenes = {}
@@ -5,4 +8,8 @@ class Veterinaria:
         self.personas = [] 
         self.mascotas = [] 
         self.facturas = []
+        self.orden = []
+
+    
+        
 
