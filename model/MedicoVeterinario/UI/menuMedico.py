@@ -43,6 +43,7 @@ def menuMedicoVeterinario(veterinaria, veterinario):
             duenoMascota = BuscarDueñoMascota(veterinaria, cedulaDueño)
             if duenoMascota == False:
                 print("no se encontro el dueño de la mascota")
+                return
             print("La cedula le pertenece a:")
             print(duenoMascota)
 
@@ -80,20 +81,33 @@ def menuMedicoVeterinario(veterinaria, veterinario):
             caracteristicas = input(
                 "\nIngrese las caracteristicas de la mascota: ")
             peso = input("\nIngrese el peso de la mascota: ")
-            AgregarMascota(veterinaria, duenoMascota, nombreMascota, cedulaDueño,
-                           edadMascota, especie, raza, caracteristicas, peso, idMascota)
+            
+            AgregarMascota(veterinaria, nombreMascota, cedulaDueño,
+                           edadMascota, especie, raza, caracteristicas, peso, str(idMascota))
+            
 
         elif opc == "4":
             print("\nConsultar mascota")
             cedulaDueño = input(
                 "\nIngrese la cedula del dueño de la mascota: ")
             mascotas = buscarMascotaDeDueño(veterinaria, cedulaDueño)
+            
+            if mascotas is not False:
+                for mascota in mascotas:
+                    print(mascota.id)
+                    print(mascota.nombre)
+                    print(mascota.raza)
+                    print(mascota.caracteristicas)
+            
 
         elif opc == "5":
             print("\nCrear historia clinica")
             cedulaDueño = input(
                 "\nIngrese la cedula del dueño de la mascota: ")
             mascotas = buscarMascotaDeDueño(veterinaria, cedulaDueño)
+            
+            if mascotas == False:
+                return
             print("\nCual de las siguientes mascotas es la que recibirá la consulta?")
 
             for indice, mascotaDelDueño in enumerate(mascotas):
@@ -199,7 +213,10 @@ def menuMedicoVeterinario(veterinaria, veterinario):
             else:
                 vacunas = "Ninguna"
                 
-            CrearHistoriaClinica(veterinaria, idMascota, fechaConsulta, profesionalAtiende, motivoConsulta, sintomatologia, diagnostico, procedimiento, medicamento, dosis, idOrden, estadoOrden, vacunas, alergiaMedicamentos, detalleProcedimiento )
+            respuesta = CrearHistoriaClinica(veterinaria, idMascota, fechaConsulta, profesionalAtiende, motivoConsulta, sintomatologia, diagnostico, procedimiento, medicamento, dosis, idOrden, estadoOrden, vacunas, alergiaMedicamentos, detalleProcedimiento )
+            
+            if respuesta == False:
+                return
             
             for key, value in veterinaria.historiaClinica.items():
                 print(key + ":", value)

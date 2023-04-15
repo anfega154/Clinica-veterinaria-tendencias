@@ -20,5 +20,5 @@ def ConsultarMascotasDueño(veterinaria, cedula):
     dueñoMascota = buscarCedula(veterinaria,str(cedula))
     if dueñoMascota == False:
         print("la cedula no esta registrada")
-        return
+        return False
     return dueñoMascota.mascotas

@@ -38,9 +38,9 @@ def BuscarDueñoMascota(veterinaria, cedula):
     except:
         print("la cedula debe ser numerica")
         return
-    return buscarCedula(veterinaria, cedula)
+    return buscarCedula(veterinaria, str(cedula))
 
-def AgregarMascota(veterinaria, dueñoMascota, nombre, cedulaDueño, edad, especie, raza, caracteristicas, peso,id):
+def AgregarMascota(veterinaria, nombre, cedulaDueño, edad, especie, raza, caracteristicas, peso,id):
 
     if nombre == None or nombre == " ":
         print("el nombre no puede ser un espacio vacio")
@@ -86,13 +86,16 @@ def AgregarMascota(veterinaria, dueñoMascota, nombre, cedulaDueño, edad, espec
         return
     
     print("------------validacion exitosa---------------------")
-    mascota = afiliarMascota(veterinaria, nombre, cedulaDueño, edad, especie, raza, caracteristicas, peso, id)
+    mascota = afiliarMascota(veterinaria, nombre, str(cedula), edad, especie, raza, caracteristicas, peso, id)
     
-    if dueñoMascota == None:
-        dueñoMascota = buscarCedula(veterinaria, cedulaDueño)
+    if mascota == False:
+        return False
     
-    print(dueñoMascota)
-    dueñoMascota.mascotas.append(mascota)
+    dueño = buscarCedula(veterinaria, str(cedula))
+    
+    print(dueño)
+    dueño.mascotas.append(mascota)
+    return True
     
 def buscarMascotaDeDueño(veterinaria, cedulaDueño):
     if cedulaDueño == None or cedulaDueño == " ":
@@ -103,20 +106,11 @@ def buscarMascotaDeDueño(veterinaria, cedulaDueño):
     except:
         print("la cedula debe ser numerica")
         return
-    return ConsultarMascotasDueño(veterinaria, cedula)
+    return ConsultarMascotasDueño(veterinaria, str(cedula))
 
 def CrearHistoriaClinica(veterinaria, idMascota, fechaConsulta, profesionalAtiende, motivoConsulta, sintomatologia, diagnostico, procedimiento, medicamento, dosis, idOrden, estadoOrden, vacunas, alergiaMedicamentos, detalleProcedimiento ):
     if idMascota == None or idMascota == " ":
         print("Id mascotas no pueden ser un espacio vacio")
-        return
-    
-    if profesionalAtiende == None or profesionalAtiende == " ":
-        print("la cedula no puede ser vacio")
-        return
-    try:
-        cedulaProfesional = int(profesionalAtiende)
-    except:
-        print("la cedula debe ser numerica")
         return
     
     if motivoConsulta == None or motivoConsulta == " ":
@@ -143,7 +137,7 @@ def CrearHistoriaClinica(veterinaria, idMascota, fechaConsulta, profesionalAtien
         print("Detalle procedimiento no pueden ser un espacio vacio")
         return
     
-    crearHistoriaClinica(veterinaria, idMascota, fechaConsulta, str(cedulaProfesional), motivoConsulta, sintomatologia, diagnostico, procedimiento, medicamento, dosis, idOrden, estadoOrden, vacunas, alergiaMedicamentos, detalleProcedimiento )
+    crearHistoriaClinica(veterinaria, idMascota, fechaConsulta, profesionalAtiende, motivoConsulta, sintomatologia, diagnostico, procedimiento, medicamento, dosis, idOrden, estadoOrden, vacunas, alergiaMedicamentos, detalleProcedimiento )
     
 def consultaHistoriaClinicaDeMascota(veterinaria, id):
     return ObtenerHistoriaClinicaPorId(veterinaria,id)
@@ -182,7 +176,7 @@ def crearOrden (veterinaria, idOrden, idMascota, cedulaDueño, veterinarioCedula
     if estadoOrden == None or estadoOrden == " ":
         print("Estado orden no pueden ser un espacio vacio")
         return
-    CrearOrden(veterinaria, idOrden, idMascota, cedula, cedulaProfesional, medicamento, dosis, fechaConsulta, estadoOrden)
+    CrearOrden(veterinaria, idOrden, idMascota, str(cedula), str(cedulaProfesional), medicamento, dosis, fechaConsulta, estadoOrden)
     
 def actualizarHistoriaClinica(veterinaria, idMascota, fechaConsulta, campoParaModificar, nuevoCampo):
     if fechaConsulta == None or fechaConsulta == " ":
@@ -196,7 +190,7 @@ def actualizarHistoriaClinica(veterinaria, idMascota, fechaConsulta, campoParaMo
     if nuevoCampo == None or nuevoCampo == " ":
         print(f"Informacion del campo {campoParaModificar} no pueden estar vacio")
         return
-    ActualizarHistoriaClinica(veterinaria,  idMascota, fechaConsulta, campoParaModificar, nuevoCampo)
+    ActualizarHistoriaClinica(veterinaria,  idMascota, str(fechaConsulta), campoParaModificar, nuevoCampo)
 
 def buscarOrden(veterinaria, fechaGeneracion):
     if fechaGeneracion == None or fechaGeneracion == " ":

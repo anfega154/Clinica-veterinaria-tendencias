@@ -13,7 +13,7 @@ def afiliarMascota(veterinaria, nombre, cedula_dueño, edad, especie, raza, cara
     personaEncontrada = buscarCedula(veterinaria, cedula_dueño)
     if personaEncontrada == False:
         print("No se encontro cedula del dueño")
-        return
+        return False
 
     mascota = Mascota(nombre, cedula_dueño, edad, especie, raza, caracteristicas, peso, id)
     veterinaria.mascotas.append(mascota)

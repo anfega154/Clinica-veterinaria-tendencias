@@ -26,6 +26,9 @@ def crearHistoriaClinica(veterinaria, idMascota, fechaConsulta, profesionalAtien
      print("----------------historia clinica creada con exito!!!----------------")
      
 def ObtenerHistoriaClinicaPorId(veterinaria, id):
+     if id not in veterinaria.historiaClinica:
+          print("La mascota no tiene historia clinica")
+          return False
      return veterinaria.historiaClinica[id]
 
 def CrearOrden (veterinaria, idOrden, idMascota, cedulaDueño, veterinarioCedula, medicamento, dosis, fechaConsulta, estadoOrden):
